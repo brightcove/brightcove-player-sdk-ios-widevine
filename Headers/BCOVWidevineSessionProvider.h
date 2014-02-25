@@ -12,6 +12,12 @@
 
 
 /**
+ * The delivery method for WVM (Widevine) media.
+ */
+extern NSString * const kBCOVSourceDeliveryWVM;
+
+
+/**
  * Session provider implementation that delivers playback sessions with support
  * for Widevine.
  *
@@ -32,6 +38,8 @@
 /**
  * Determines whether or not Widevine playback sessions should resume playback
  * when the app returns to the foreground.
+ *
+ * The default is YES.
  */
 @property (nonatomic) BOOL resumePlaybackOnWillEnterForeground;
 
@@ -39,7 +47,16 @@
  * The settings dictionary accepted by the Widevine SDK for iOS. For further
  * information about these settings, see the documentation for the Widevine SDK
  * for iOS.
+ *
+ * The default is an empty dictionary.
  */
 @property (nonatomic, copy) NSDictionary *widevineSettings;
+
+/**
+ * The default policy selects the first source with a delivery type of "WVM".
+ * If no Widevine source is found, it falls back to the default 
+ * BCOVBasicSessionProviderOptions source selection policy.
+ */
+@property (nonatomic, copy) BCOVBasicSessionProviderSourceSelectionPolicy sourceSelectionPolicy;
 
 @end

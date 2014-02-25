@@ -1,7 +1,7 @@
 Brightcove Widevine Component
 ============
 
-The Brightcove Widevine Component, version 1.0.4.104, allows for playback of Widevine encrypted Sources.
+The Brightcove Widevine Component, version 1.0.5.118, allows for playback of Widevine encrypted Sources.
 
 Installation
 ===========
