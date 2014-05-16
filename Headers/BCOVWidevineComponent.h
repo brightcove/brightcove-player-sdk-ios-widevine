@@ -18,10 +18,6 @@
 @class BCOVWidevineSessionProviderOptions;
 
 
-extern NSString * const kBCOVWidevineLifecycleEventWViOsApi;
-extern NSString * const kBCOVWidevineWViOsApiEvent;
-
-
 /**
  * Adds methods to BCOVPlayerSDKManager to create Widevine players.
  */

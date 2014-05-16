@@ -1,46 +1,60 @@
-Brightcove Widevine Component
-============
+# Widevine Plugin for Brightcove Player SDK for iOS, version 1.0.6.143
 
-The Brightcove Widevine Component, version 1.0.5.118, allows for playback of Widevine encrypted Sources.
 
 Installation
 ===========
 
-The Brightcove Widevine Component will need to be manually added to your Xcode project.  There are several ways you achieve this, but here is one example:
+Widevine Plugin for Brightcove Player SDK for iOS can be installed through Cocoapods. In order to install the pod, you must first install the [BCOVSpecs](https://github.com/brightcove/BCOVSpecs) cocoapods repository by executing `pod repo add BCOVSpecs https://github.com/brightcove/BCOVSpecs.git` from the command line. Then include `Brightcove-Player-SDK-Widevine` in your podfile.
 
-1. Extract the BCOVWidevine zip file. 
-1. Drag the BCOVWidevine folder into the navigation tree of your Xcode project.  At the prompt, check "Copy items into destination group's folder (if needed)" if you want the files copied into the same directory as your project.  In addition, select any targets that you would like to add the library files to.
-1. Under your project's `Build Settings`, ensure that the directory that contains headers and libraries for the Brightcove Widevine Component are added to the `Header Search Paths` and the `Library Search Paths`.
-1. Under your project's `Build Phases`, ensure that the libraries for the Brightcove Widevine Component are added to the `Link Binary with Libraries` phase.
-    * libBCOVWidevine.a
-    * libWViPhoneAPI.a
-    * libc++
-    * libxml2
-    * libresolv
-    * libSystem
-    * libz
+To install through Xcode, add libBCOVWidevine.a and accompanying header files to your header search path. You **must** manually add the Widevine SDK to your project along with dependencies.
 
+Quick Start
+===========
+```objc
 
+	    NSString *token;      // (Brightcove Media API token with URL access)
+	    NSString *playlistID; // (ID of the playlist you wish to use)
+	
+	    BCOVPlayerSDKManager *manager = [BCOVPlayerSDKManager sharedManager];
+	[1] id<BCOVPlaybackController> controller = [playbackManager createWidevinePlaybackControllerWithViewStrategy:nil]viewStrategy:nil];
+	    [self.view addSubview:controller.view];
+	
+	    BCOVCatalogService *catalog = [[BCOVCatalogService alloc] initWithToken:token];
+	[2] [catalog findWidevinePlaylistWithPlaylistID:playlistID
+	                             parameters:nil
+	                             completion:^(BCOVPlaylist *playlist,
+	                                          NSDictionary *jsonResponse,
+	                                          NSError      *error) {
+	
+	                                 [controller setVideos:playlist];
+	                                 [controller play];
+	                                 
+	                             }];
+	
+```
+Let's break this code down into steps, to make it a bit simpler to digest:
 
-Usage
+1. BCOVWidevine adds some category methods to BCOVPlaybackManager. The first of these is `-createWidevinePlaybackControllerWithViewStrategy`. Use this method to create your playback controller. Alternatively (if you are using more than one session provider), you can create a BCOVWidevineSessionProvider and pass that to the manager method that creates a playback controller with upstream session providers.\*
+1. BCOVWidevine adds some category methods to BCOVPlaybackManager for retrieving Widevine renditions from the catalog.
+
+\* Note that BCOVWidevineSessionProvider should come before any ad session providers in the chain passed to the manager when constructing the playback controller.
+
+If you have questions or need help, we have a support forum for Brightcove's native Player SDKs at https://groups.google.com/forum/#!forum/brightcove-native-player-sdks .
+
+Customizing Plugin Behavior
 ===========
 
-For convenience, you can import `#import "BCOVWidevine.h"`to access all the component headers.
+You can customize default plugin behavior by creating an instance of `BCOVWidevineSessionProviderOptions` and overriding the default properties. To use a `BCOVWideSessionProviderOptions` options instance, you need to create the `BCOVWideSessionProvider` using `-[BCOVSDKManager createWidevineSessionProviderWithOptions:]`.
 
-Before using the Brightcove Widevine Component, you are required to register with the Player SDK Manager.
+```objc
 
-    BCOVPlayerSDKManager *sdkManager = [BCOVPlayerSDKManager sharedManager];
-    
-    BCOVWidevineComponent *component = [[BCOVWidevineComponent alloc] init];
-    [sdkManager registerComponent:component];
+    BCOVWidevineSessionProviderOptions *options = [[BCOVWidevineSessionProviderOptions alloc] init];
+    options.widevineSessions = @{ WVPlayerDrivenAdaptationKey: @1 };
+    id<BCOVPlaybackSessionProvider> sessionProvider = [playbackManager createWidevineSessionProviderWithOptions:options];
+
+    id<BCOVPlaybackController> playbackController = [playbackManager createPlaybackControllerWithSessionProvider:sessionProvider viewStrategy:nil];
+```
 
 
-Once registered, you can access any of the methods now exposed on the Player SDK Manager to create a Video Controller that uses Widevine.
-
-
-Known Issues
-===========
-Playing back mixed content (widevine/nonwidevine) in the same playlist is not supported.
-Decrypting content on the simulator is not supported.
 
 
