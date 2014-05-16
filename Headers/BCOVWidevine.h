@@ -9,4 +9,5 @@
 
 #import "BCOVCatalogService+BCOVWidevineAdditions.h"
 #import "BCOVWidevineComponent.h"
+#import "BCOVWidevineConstants.h"
 #import "BCOVWidevineSessionProvider.h"

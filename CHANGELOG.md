@@ -1,3 +1,10 @@
+# 1.0.6
+
+### Additions and Improvements
+* Deliver lifecycle event `kBCOVWidevineLifecycleEventError` if Widevine fails to initialize.
+* Fix a bug that caused Widevine to unnecessarily tear down the video if the app was interrupted.
+
+
 # 1.0.5
 
 ### Breaking Changes

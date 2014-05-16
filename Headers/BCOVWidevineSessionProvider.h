@@ -8,13 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "BCOVPlaybackSessionProvider.h"
-
-
-/**
- * The delivery method for WVM (Widevine) media.
- */
-extern NSString * const kBCOVSourceDeliveryWVM;
+#import "BCOVBasicSessionProvider.h"
 
 
 /**
