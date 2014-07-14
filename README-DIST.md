@@ -49,7 +49,7 @@ You can customize default plugin behavior by creating an instance of `BCOVWidevi
 ```objc
 
     BCOVWidevineSessionProviderOptions *options = [[BCOVWidevineSessionProviderOptions alloc] init];
-    options.widevineSessions = @{ WVPlayerDrivenAdaptationKey: @1 };
+    options.widevineSettings = @{ WVPlayerDrivenAdaptationKey: @1 };
     id<BCOVPlaybackSessionProvider> sessionProvider = [playbackManager createWidevineSessionProviderWithOptions:options];
 
     id<BCOVPlaybackController> playbackController = [playbackManager createPlaybackControllerWithSessionProvider:sessionProvider viewStrategy:nil];
