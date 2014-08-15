@@ -9,177 +9,117 @@
 #import "BCOVCatalogService.h"
 
 
+@class RACSignal;
+
+
 /**
  * Adds methods to the BCOVCatalogService to retrieve Widevine assets.
  */
 @interface BCOVCatalogService (BCOVWidevineAdditions)
 
 /**
- * Retrieves a playlist from the Media API service by its playlist ID.
+ * Returns an operation that retrieves a Widevine BCOVPlaylist corresponding to
+ * the specified parameters.  Cast this operation's `result` property to a
+ * `BCOVPlaylist *` if the operation succeeds.
  *
- * If the Media API returns a standard JSON-formatted error response, the
- * deserialized response will be the delivered error's `userInfo`.
- *
- * If a JSON parse error occurs, the raw NSData response will be included in the
- * delivered error's `userInfo`, keyed by kBCOVCatalogJSONDeserializationErrorRawDataKey.
- *
- * The returned signal does not guarantee that it will deliver its values on
- * the main thread scheduler, so if this is a requirement then use -[RACSignal deliverOn:]
- * to deliver the values on the main thread.
- *
- * @param playlistID string containing the ID of the playlist to find.
- * @param parameters Additional NSString query parameters to add to the Media API
- * requests. These values will override the default values if they conflict.
- * @return  Returns a signal that sends a BCOVPlaylist as its only value, then
- * completes.
+ * @param playlistID The playlist ID of the playlist to find.
+ * @param parameters Additional NSString query parameters to add to catalog
+ * service requests. These values will override the default values if they
+ * conflict.
+ * @return An operation that retrieves the specified Widevine BCOVPlaylist.
  */
-- (RACSignal *)findWidevinePlaylistWithPlaylistID:(NSString *)playlistID parameters:(NSDictionary *)parameters;
+- (BCOVCatalogOperation *)widevinePlaylistOperationWithPlaylistID:(NSString *)playlistID parameters:(NSDictionary *)parameters;
 
 /**
- * Retrieves playlist data from the Media API service by its playlist ID.
+ * Returns an operation that retrieves a Widevine BCOVPlaylist corresponding to
+ * the specified parameters.  Cast this operation's `result` property to a
+ * `BCOVPlaylist *` if the operation succeeds.
  *
- * If the Media API returns a standard JSON-formatted error response, the
- * deserialized response will be the delivered error's `userInfo`.
- *
- * If a JSON parse error occurs, the raw NSData response will be included in the
- * delivered error's `userInfo`, keyed by kBCOVCatalogJSONDeserializationErrorRawDataKey.
- *
- * The returned signal does not guarantee that it will deliver its values on
- * the main thread scheduler, so if this is a requirement then use -[RACSignal deliverOn:]
- * to deliver the values on the main thread.
- *
- * @param playlistID string containing the ID of the playlist to find.
- * @param parameters Additional NSString query parameters to add to the Media API
- * requests. These values will override the default values if they conflict.
- * @return  Returns a signal that sends a JSON dictionary as its only value,
- * then completes. */
-- (RACSignal *)findWidevinePlaylistDictionaryWithPlaylistID:(NSString *)playlistID parameters:(NSDictionary *)parameters;
+ * @param referenceID The playlist reference ID of the playlist to find.
+ * @param parameters Additional NSString query parameters to add to catalog
+ * service requests. These values will override the default values if they
+ * conflict.
+ * @return An operation that retrieves the specified Widevine BCOVPlaylist.
+ */
+- (BCOVCatalogOperation *)widevinePlaylistOperationWithReferenceID:(NSString *)referenceID parameters:(NSDictionary *)parameters;
 
 /**
- * Retrieves a playlist from the Media API service by its reference ID.
+ * Returns an operation that retrieves a Widevine BCOVVideo corresponding to
+ * the specified parameters.  Cast this operation's `result` property to a
+ * `BCOVVideo *` if the operation succeeds.
  *
- * If the Media API returns a standard JSON-formatted error response, the
- * deserialized response will be the delivered error's `userInfo`.
- *
- * If a JSON parse error occurs, the raw NSData response will be included in the
- * delivered error's `userInfo`, keyed by kBCOVCatalogJSONDeserializationErrorRawDataKey.
- *
- * The returned signal does not guarantee that it will deliver its values on
- * the main thread scheduler, so if this is a requirement then use -[RACSignal deliverOn:]
- * to deliver the values on the main thread.
- *
- * @param referenceID string containing the reference ID of the playlist to find.
- * @param parameters Additional NSString query parameters to add to the Media API
- * requests. These values will override the default values if they conflict.
- * @return  Returns a signal that sends a BCOVPlaylist as its only value, then
- * completes.
+ * @param videoID The video ID of the video to find.
+ * @param parameters Additional NSString query parameters to add to catalog
+ * service requests. These values will override the default values if they
+ * conflict.
+ * @return An operation that retrieves the specified Widevine BCOVVideo.
  */
-- (RACSignal *)findWidevinePlaylistWithReferenceID:(NSString *)referenceID parameters:(NSDictionary *)parameters;
+- (BCOVCatalogOperation *)widevineVideoOperationWithVideoID:(NSString *)videoID parameters:(NSDictionary *)parameters;
 
 /**
- * Retrieves playlist data from the Media API service by its reference ID.
+ * Returns an operation that retrieves a Widevine BCOVVideo corresponding to
+ * the specified parameters.  Cast this operation's `result` property to a
+ * `BCOVVideo *` if the operation succeeds.
  *
- * If the Media API returns a standard JSON-formatted error response, the
- * deserialized response will be the delivered error's `userInfo`.
- *
- * If a JSON parse error occurs, the raw NSData response will be included in the
- * delivered error's `userInfo`, keyed by kBCOVCatalogJSONDeserializationErrorRawDataKey.
- *
- * The returned signal does not guarantee that it will deliver its values on
- * the main thread scheduler, so if this is a requirement then use -[RACSignal deliverOn:]
- * to deliver the values on the main thread.
- *
- * @param referenceID string containing the reference ID of the playlist to find.
- * @param parameters Additional NSString query parameters to add to the Media API
- * requests. These values will override the default values if they conflict.
- * @return  Returns a signal that sends a JSON dictionary as its only value,
- * then completes.
+ * @param referenceID The video reference ID of the video to find.
+ * @param parameters Additional NSString query parameters to add to catalog
+ * service requests. These values will override the default values if they
+ * conflict.
+ * @return An operation that retrieves the specified Widevine BCOVVideo.
  */
-- (RACSignal *)findWidevinePlaylistDictionaryWithReferenceID:(NSString *)referenceID parameters:(NSDictionary *)parameters;
+- (BCOVCatalogOperation *)widevineVideoOperationWithReferenceID:(NSString *)referenceID parameters:(NSDictionary *)parameters;
 
 /**
- * Retrieves a video from the Media API service by its video ID.
+ * Returns an operation that retrieves JSON for a Widevine playlist
+ * corresponding to the specified parameters.  Cast this operation's `result`
+ * property to a `NSDictionary *` if the operation succeeds.
  *
- * If the Media API returns a standard JSON-formatted error response, the
- * deserialized response will be the delivered error's `userInfo`.
- *
- * If a JSON parse error occurs, the raw NSData response will be included in the
- * delivered error's `userInfo`, keyed by kBCOVCatalogJSONDeserializationErrorRawDataKey.
- *
- * The returned signal does not guarantee that it will deliver its values on
- * the main thread scheduler, so if this is a requirement then use -[RACSignal deliverOn:]
- * to deliver the values on the main thread.
- *
- * @param videoID string containing the ID of the video to find.
- * @param parameters Additional NSString query parameters to add to the Media API
- * requests. These values will override the default values if they conflict.
- * @return  Returns a signal that sends a BCOVVideo as its only value, then
- * completes.
+ * @param playlistID The playlist ID of the playlist to find.
+ * @param parameters Additional NSString query parameters to add to catalog
+ * service requests. These values will override the default values if they
+ * conflict.
+ * @return An operation that retrieves the specified Widevine playlist as JSON.
  */
-- (RACSignal *)findWidevineVideoWithVideoID:(NSString *)videoID parameters:(NSDictionary *)parameters;
+- (BCOVCatalogOperation *)widevinePlaylistDictionaryOperationWithPlaylistID:(NSString *)playlistID parameters:(NSDictionary *)parameters;
 
 /**
- * Retrieves video data from the Media API service by its video ID.
+ * Returns an operation that retrieves JSON for a Widevine playlist
+ * corresponding to the specified parameters.  Cast this operation's `result`
+ * property to a `NSDictionary *` if the operation succeeds.
  *
- * If the Media API returns a standard JSON-formatted error response, the
- * deserialized response will be the delivered error's `userInfo`.
- *
- * If a JSON parse error occurs, the raw NSData response will be included in the
- * delivered error's `userInfo`, keyed by kBCOVCatalogJSONDeserializationErrorRawDataKey.
- *
- * The returned signal does not guarantee that it will deliver its values on
- * the main thread scheduler, so if this is a requirement then use -[RACSignal deliverOn:]
- * to deliver the values on the main thread.
- *
- * @param videoID string containing the ID of the video to find.
- * @param parameters Additional NSString query parameters to add to the Media API
- * requests. These values will override the default values if they conflict.
- * @return  Returns a signal that sends a JSON dictionary as its only value,
- * then completes.
+ * @param referenceID The playlist reference ID of the playlist to find.
+ * @param parameters Additional NSString query parameters to add to catalog
+ * service requests. These values will override the default values if they
+ * conflict.
+ * @return An operation that retrieves the specified Widevine playlist as JSON.
  */
-- (RACSignal *)findWidevineVideoDictionaryWithVideoID:(NSString *)videoID parameters:(NSDictionary *)parameters;
+- (BCOVCatalogOperation *)widevinePlaylistDictionaryOperationWithReferenceID:(NSString *)referenceID parameters:(NSDictionary *)parameters;
 
 /**
- * Retrieves a video from the Media API service by its reference ID.
+ * Returns an operation that retrieves JSON for a Widevine video corresponding
+ * to the specified parameters.  Cast this operation's `result` property to a
+ * `NSDictionary *` if the operation succeeds.
  *
- * If the Media API returns a standard JSON-formatted error response, the
- * deserialized response will be the delivered error's `userInfo`.
- *
- * If a JSON parse error occurs, the raw NSData response will be included in the
- * delivered error's `userInfo`, keyed by kBCOVCatalogJSONDeserializationErrorRawDataKey.
- *
- * The returned signal does not guarantee that it will deliver its values on
- * the main thread scheduler, so if this is a requirement then use -[RACSignal deliverOn:]
- * to deliver the values on the main thread.
- *
- * @param referenceID string containing the reference ID of the video to find.
- * @param parameters Additional NSString query parameters to add to the Media API
- * requests. These values will override the default values if they conflict.
- * @return  Returns a signal that sends a BCOVVideo as its only value, then
- * completes.
+ * @param videoID The video ID of the video to find.
+ * @param parameters Additional NSString query parameters to add to catalog
+ * service requests. These values will override the default values if they
+ * conflict.
+ * @return An operation that retrieves the specified Widevine video as JSON.
  */
-- (RACSignal *)findWidevineVideoWithReferenceID:(NSString *)referenceID parameters:(NSDictionary *)parameters;
+- (BCOVCatalogOperation *)widevineVideoDictionaryOperationWithVideoID:(NSString *)videoID parameters:(NSDictionary *)parameters;
 
 /**
- * Retrieves video data from the Media API service by its reference ID.
+ * Returns an operation that retrieves JSON for a Widevine video corresponding
+ * to the specified parameters.  Cast this operation's `result` property to a
+ * `NSDictionary *` if the operation succeeds.
  *
- * If the Media API returns a standard JSON-formatted error response, the
- * deserialized response will be the delivered error's `userInfo`.
- *
- * If a JSON parse error occurs, the raw NSData response will be included in the
- * delivered error's `userInfo`, keyed by kBCOVCatalogJSONDeserializationErrorRawDataKey.
- *
- * The returned signal does not guarantee that it will deliver its values on
- * the main thread scheduler, so if this is a requirement then use -[RACSignal deliverOn:]
- * to deliver the values on the main thread.
- *
- * @param referenceID string containing the reference ID of the video to find.
- * @param parameters Additional NSString query parameters to add to the Media API
- * requests. These values will override the default values if they conflict.
- * @return  Returns a signal that sends a JSON dictionary as its only value,
- * then completes.
+ * @param referenceID The video reference ID of the video to find.
+ * @param parameters Additional NSString query parameters to add to catalog
+ * service requests. These values will override the default values if they
+ * conflict.
+ * @return An operation that retrieves the specified Widevine video as JSON.
  */
-- (RACSignal *)findWidevineVideoDictionaryWithReferenceID:(NSString *)referenceID parameters:(NSDictionary *)parameters;
+- (BCOVCatalogOperation *)widevineVideoDictionaryOperationWithReferenceID:(NSString *)referenceID parameters:(NSDictionary *)parameters;
 
 @end
 
@@ -261,5 +201,19 @@
  * finishes. Execution of the completionHandler will occur on the main thread.
  */
 - (void)findWidevineVideoWithReferenceID:(NSString *)referenceID parameters:(NSDictionary *)parameters completion:(void (^)(BCOVVideo *video, NSDictionary *jsonResponse, NSError *error))completionHandler;
+
+@end
+
+
+@interface BCOVCatalogService (BCOVWidevineDeprecated)
+
+- (RACSignal *)findWidevinePlaylistWithPlaylistID:(NSString *)playlistID parameters:(NSDictionary *)parameters __attribute((deprecated("Use -[BCOVCatalogService+BCOVWidevineAdditions widevinePlaylistOperationWithPlaylistID:parameters:] instead")));
+- (RACSignal *)findWidevinePlaylistDictionaryWithPlaylistID:(NSString *)playlistID parameters:(NSDictionary *)parameters __attribute((deprecated("Use -[BCOVCatalogService+BCOVWidevineAdditions widevinePlaylistDictionaryOperationWithPlaylistID:parameters:] instead")));
+- (RACSignal *)findWidevinePlaylistWithReferenceID:(NSString *)referenceID parameters:(NSDictionary *)parameters __attribute((deprecated("Use -[BCOVCatalogService+BCOVWidevineAdditions widevinePlaylistOperationWithReferenceID:parameters:] instead")));
+- (RACSignal *)findWidevinePlaylistDictionaryWithReferenceID:(NSString *)referenceID parameters:(NSDictionary *)parameters __attribute((deprecated("Use -[BCOVCatalogService+BCOVWidevineAdditions widevinePlaylistDictionaryOperationWithReferenceID:parameters:] instead")));
+- (RACSignal *)findWidevineVideoWithVideoID:(NSString *)videoID parameters:(NSDictionary *)parameters __attribute((deprecated("Use -[BCOVCatalogService+BCOVWidevineAdditions widevineVideoOperationWithVideoID:parameters:] instead")));
+- (RACSignal *)findWidevineVideoDictionaryWithVideoID:(NSString *)videoID parameters:(NSDictionary *)parameters __attribute((deprecated("Use -[BCOVCatalogService+BCOVWidevineAdditions widevineVideoDictionaryOperationWithVideoID:parameters:] instead")));
+- (RACSignal *)findWidevineVideoWithReferenceID:(NSString *)referenceID parameters:(NSDictionary *)parameters __attribute((deprecated("Use -[BCOVCatalogService+BCOVWidevineAdditions widevineVideoOperationWithReferenceID:parameters:] instead")));
+- (RACSignal *)findWidevineVideoDictionaryWithReferenceID:(NSString *)referenceID parameters:(NSDictionary *)parameters __attribute((deprecated("Use -[BCOVCatalogService+BCOVWidevineAdditions widevineVideoDictionaryOperationWithReferenceID:parameters:] instead")));
 
 @end
