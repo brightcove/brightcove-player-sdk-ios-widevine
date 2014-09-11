@@ -1,3 +1,9 @@
+# 1.0.8
+
+### Additions and Improvements
+  * Internal improvements.
+
+
 # 1.0.7
 
 ### Breaking Changes
