@@ -203,17 +203,3 @@
 - (void)findWidevineVideoWithReferenceID:(NSString *)referenceID parameters:(NSDictionary *)parameters completion:(void (^)(BCOVVideo *video, NSDictionary *jsonResponse, NSError *error))completionHandler;
 
 @end
-
-
-@interface BCOVCatalogService (BCOVWidevineDeprecated)
-
-- (RACSignal *)findWidevinePlaylistWithPlaylistID:(NSString *)playlistID parameters:(NSDictionary *)parameters __attribute((deprecated("Use -[BCOVCatalogService+BCOVWidevineAdditions widevinePlaylistOperationWithPlaylistID:parameters:] instead")));
-- (RACSignal *)findWidevinePlaylistDictionaryWithPlaylistID:(NSString *)playlistID parameters:(NSDictionary *)parameters __attribute((deprecated("Use -[BCOVCatalogService+BCOVWidevineAdditions widevinePlaylistDictionaryOperationWithPlaylistID:parameters:] instead")));
-- (RACSignal *)findWidevinePlaylistWithReferenceID:(NSString *)referenceID parameters:(NSDictionary *)parameters __attribute((deprecated("Use -[BCOVCatalogService+BCOVWidevineAdditions widevinePlaylistOperationWithReferenceID:parameters:] instead")));
-- (RACSignal *)findWidevinePlaylistDictionaryWithReferenceID:(NSString *)referenceID parameters:(NSDictionary *)parameters __attribute((deprecated("Use -[BCOVCatalogService+BCOVWidevineAdditions widevinePlaylistDictionaryOperationWithReferenceID:parameters:] instead")));
-- (RACSignal *)findWidevineVideoWithVideoID:(NSString *)videoID parameters:(NSDictionary *)parameters __attribute((deprecated("Use -[BCOVCatalogService+BCOVWidevineAdditions widevineVideoOperationWithVideoID:parameters:] instead")));
-- (RACSignal *)findWidevineVideoDictionaryWithVideoID:(NSString *)videoID parameters:(NSDictionary *)parameters __attribute((deprecated("Use -[BCOVCatalogService+BCOVWidevineAdditions widevineVideoDictionaryOperationWithVideoID:parameters:] instead")));
-- (RACSignal *)findWidevineVideoWithReferenceID:(NSString *)referenceID parameters:(NSDictionary *)parameters __attribute((deprecated("Use -[BCOVCatalogService+BCOVWidevineAdditions widevineVideoOperationWithReferenceID:parameters:] instead")));
-- (RACSignal *)findWidevineVideoDictionaryWithReferenceID:(NSString *)referenceID parameters:(NSDictionary *)parameters __attribute((deprecated("Use -[BCOVCatalogService+BCOVWidevineAdditions widevineVideoDictionaryOperationWithReferenceID:parameters:] instead")));
-
-@end

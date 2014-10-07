@@ -1,8 +1,16 @@
-# 1.0.8
+
+# 1.0.9
+
+### Breaking Changes
+ *  Use of ReactiveCocoa in public APIs within the BCOVWidevine Plugin is removed in this release.
 
 ### Additions and Improvements
   * Internal improvements.
 
+# 1.0.8
+
+### Additions and Improvements
+  * Internal improvements.
 
 # 1.0.7
 

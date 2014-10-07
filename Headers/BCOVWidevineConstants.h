@@ -7,7 +7,7 @@
 //
 
 /**
- * The eventType for a Widevine WViOsApiEvent sent on the lifecycle signal.
+ * The eventType for a Widevine WViOsApiEvent sent via a lifecycle event.
  */
 extern NSString * const kBCOVWidevineLifecycleEventWViOsApi;
 
@@ -25,7 +25,7 @@ extern NSString * const kBCOVWidevineLifeycleEventSessionDidResume;
 
 /**
  * The eventType for a Widevine Error that occurs during initialization and sent
- * on the lifecycle signal.
+ * via a lifecycle event.
  */
 extern NSString * const kBCOVWidevineLifecycleEventError;
 
