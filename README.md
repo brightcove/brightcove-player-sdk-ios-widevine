@@ -1,26 +1,13 @@
-# Widevine Plugin for Brightcove Player SDK for iOS, version 1.0.10.234
+# Widevine Plugin for Brightcove Player SDK for iOS, version 1.2.0.237
 
 Requirements
 ============
 
-This plugin will run on iOS 6.1+.
+This plugin will run on iOS 7.0+. Widevine will not run on the simulator.
 
 Installation
 ============
 You can use [Cocoapods][cocoapods] to add the Widevine Plugin for Brightcove Player SDK to your project.  You can find the latest `Brightcove-Player-SDK-Widevine` podspec [here][podspecs].  To use this spec, using Cocoapods 0.34.1+, add the following to the top of Podfile: `source 'https://github.com/brightcove/BCOVSpecs.git'`.
-
-The Widevine library doesn't currently support the arm64 architecture.  If using Cocoapods, you can ensure your pods don't attempt to build arm64 but adding the following to the end of your Podfile:
-
-```
-# Remove 64-bit build architecture from Pods targets
-post_install do |installer|
-  installer.project.targets.each do |target|
-    target.build_configurations.each do |configuration|
-      target.build_settings(configuration.name)['ARCHS'] = '$(ARCHS_STANDARD_32_BIT)'
-    end
-  end
-end
-```
 
 To add the Widevine Plugin for Brightcove Player SDK to your project manually:
 
@@ -39,7 +26,6 @@ To add the Widevine Plugin for Brightcove Player SDK to your project manually:
 1. On the "Build Settings" tab of your application target:
     * Ensure that BCOVWidevine headers are in your application's "Header Search Path".
     * Ensure that `-ObjC` has been added to the "Other Linker Flags" build setting.
-    * Because the Widevine library doesn't support arm64, ensure your build architecture is set to `ARCHS_STANDARD_32_BIT`.
 
 [bcovsdk]: https://github.com/brightcove/brightcove-player-sdk-ios
 [cocoapods]: http://cocoapods.org

@@ -34,27 +34,15 @@
 					<div class="section section-overview index-overview">
 						
 						
-						<h1>Widevine Plugin for Brightcove Player SDK for iOS, version 1.0.10.234</h1>
+						<h1>Widevine Plugin for Brightcove Player SDK for iOS, version 1.2.0.237</h1>
 
 <h1>Requirements</h1>
 
-<p>This plugin will run on iOS 6.1+.</p>
+<p>This plugin will run on iOS 7.0+. Widevine will not run on the simulator.</p>
 
 <h1>Installation</h1>
 
 <p>You can use <a href="[http://cocoapods.org](http://cocoapods.org)">Cocoapods</a> to add the Widevine Plugin for Brightcove Player SDK to your project.  You can find the latest <code>Brightcove-Player-SDK-Widevine</code> podspec <a href="[https://github.com/brightcove/BCOVSpecs/tree/master/Brightcove-Player-SDK-Widevine](https://github.com/brightcove/BCOVSpecs/tree/master/Brightcove-Player-SDK-Widevine)">here</a>.  To use this spec, using Cocoapods 0.34.1+, add the following to the top of Podfile: <code>source '</code>https://github.com/brightcove/BCOVSpecs.git'<code></code>.</p>
-
-<p>The Widevine library doesn&rsquo;t currently support the arm64 architecture.  If using Cocoapods, you can ensure your pods don&rsquo;t attempt to build arm64 but adding the following to the end of your Podfile:</p>
-
-<pre><code># Remove 64-bit build architecture from Pods targets
-post_install do |installer|
-  installer.project.targets.each do |target|
-    target.build_configurations.each do |configuration|
-      target.build_settings(configuration.name)['ARCHS'] = '$(ARCHS_STANDARD_32_BIT)'
-    end
-  end
-end
-</code></pre>
 
 <p>To add the Widevine Plugin for Brightcove Player SDK to your project manually:</p>
 
@@ -80,7 +68,6 @@ end
 <ul>
 <li>Ensure that BCOVWidevine headers are in your application&rsquo;s &ldquo;Header Search Path&rdquo;.</li>
 <li>Ensure that <code>-ObjC</code> has been added to the &ldquo;Other Linker Flags&rdquo; build setting.</li>
-<li>Because the Widevine library doesn&rsquo;t support arm64, ensure your build architecture is set to <code>ARCHS_STANDARD_32_BIT</code>.</li>
 </ul>
 </li>
 </ol>
@@ -123,7 +110,7 @@ end
 
 <h1>Customizing Plugin Behavior</h1>
 
-<p>You can customize default plugin behavior by creating an instance of <code>BCOVWidevineSessionProviderOptions</code> and overriding the default properties. To use a <code>BCOVWideSessionProviderOptions</code> options instance, you need to create the <code>BCOVWideSessionProvider</code> using <code>[BCOVSDKManager createWidevineSessionProviderWithOptions:]</code>.</p>
+<p>You can customize default plugin behavior by creating an instance of <a href="Classes/BCOVWidevineSessionProviderOptions.html"><code>BCOVWidevineSessionProviderOptions</code></a> and overriding the default properties. To use a <code>BCOVWideSessionProviderOptions</code> options instance, you need to create the <code>BCOVWideSessionProvider</code> using <code>[BCOVSDKManager createWidevineSessionProviderWithOptions:]</code>.</p>
 
 <pre><code>
     BCOVWidevineSessionProviderOptions *options = [[BCOVWidevineSessionProviderOptions alloc] init];
