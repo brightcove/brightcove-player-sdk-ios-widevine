@@ -34,7 +34,11 @@
 					<div class="section section-overview index-overview">
 						
 						
-						<h1>Widevine Plugin for Brightcove Player SDK for iOS, version 1.0.9.217</h1>
+						<h1>Widevine Plugin for Brightcove Player SDK for iOS, version 1.0.10.234</h1>
+
+<h1>Requirements</h1>
+
+<p>This plugin will run on iOS 6.1+.</p>
 
 <h1>Installation</h1>
 
@@ -84,44 +88,44 @@ end
 
 <h1>Quick Start</h1>
 
-<p>```objc</p>
+<pre><code>
+        NSString *token;      // (Brightcove Media API token with URL access)
+        NSString *playlistID; // (ID of the playlist you wish to use)
 
-<pre><code>    NSString *token;      // (Brightcove Media API token with URL access)
-    NSString *playlistID; // (ID of the playlist you wish to use)
+        BCOVPlayerSDKManager *manager = [BCOVPlayerSDKManager sharedManager];
+    [1] id&lt;BCOVPlaybackController&gt; controller = [playbackManager createWidevinePlaybackControllerWithViewStrategy:nil]viewStrategy:nil];
+        [self.view addSubview:controller.view];
 
-    BCOVPlayerSDKManager *manager = [BCOVPlayerSDKManager sharedManager];
-[1] id&lt;BCOVPlaybackController&gt; controller = [playbackManager createWidevinePlaybackControllerWithViewStrategy:nil]viewStrategy:nil];
-    [self.view addSubview:controller.view];
+        BCOVCatalogService *catalog = [[BCOVCatalogService alloc] initWithToken:token];
+    [2] [catalog findWidevinePlaylistWithPlaylistID:playlistID
+                                 parameters:nil
+                                 completion:^(BCOVPlaylist *playlist,
+                                              NSDictionary *jsonResponse,
+                                              NSError      *error) {
 
-    BCOVCatalogService *catalog = [[BCOVCatalogService alloc] initWithToken:token];
-[2] [catalog findWidevinePlaylistWithPlaylistID:playlistID
-                             parameters:nil
-                             completion:^(BCOVPlaylist *playlist,
-                                          NSDictionary *jsonResponse,
-                                          NSError      *error) {
+                                     [controller setVideos:playlist];
+                                     [controller play];
 
-                                 [controller setVideos:playlist];
-                                 [controller play];
-
-                             }];
+                                 }];
 </code></pre>
 
-<pre><code>Let's break this code down into steps, to make it a bit simpler to digest:
+<p>Let&rsquo;s break this code down into steps, to make it a bit simpler to digest:</p>
 
-1. BCOVWidevine adds some category methods to BCOVPlaybackManager. The first of these is `-createWidevinePlaybackControllerWithViewStrategy`. Use this method to create your playback controller. Alternatively (if you are using more than one session provider), you can create a BCOVWidevineSessionProvider and pass that to the manager method that creates a playback controller with upstream session providers.\*
-1. BCOVWidevine adds some category methods to BCOVPlaybackManager for retrieving Widevine renditions from the catalog.
+<ol>
+<li>BCOVWidevine adds some category methods to BCOVPlaybackManager. The first of these is <code>-createWidevinePlaybackControllerWithViewStrategy</code>. Use this method to create your playback controller. Alternatively (if you are using more than one session provider), you can create a <a href="Classes/BCOVWidevineSessionProvider.html">BCOVWidevineSessionProvider</a> and pass that to the manager method that creates a playback controller with upstream session providers.*</li>
+<li>BCOVWidevine adds some category methods to BCOVPlaybackManager for retrieving Widevine renditions from the catalog.</li>
+</ol>
 
-\* Note that BCOVWidevineSessionProvider should come before any ad session providers in the chain passed to the manager when constructing the playback controller.
 
-If you have questions or need help, we have a support forum for Brightcove's native Player SDKs at https://groups.google.com/forum/#!forum/brightcove-native-player-sdks .
+<p>* Note that BCOVWidevineSessionProvider should come before any ad session providers in the chain passed to the manager when constructing the playback controller.</p>
 
-Customizing Plugin Behavior
-===========
+<p>If you have questions or need help, we have a support forum for Brightcove&rsquo;s native Player SDKs at <a href="https://groups.google.com/forum/">https://groups.google.com/forum/</a>#!forum/brightcove-native-player-sdks .</p>
 
-You can customize default plugin behavior by creating an instance of `BCOVWidevineSessionProviderOptions` and overriding the default properties. To use a `BCOVWideSessionProviderOptions` options instance, you need to create the `BCOVWideSessionProvider` using `[BCOVSDKManager createWidevineSessionProviderWithOptions:]`.
+<h1>Customizing Plugin Behavior</h1>
 
-```objc
+<p>You can customize default plugin behavior by creating an instance of <code>BCOVWidevineSessionProviderOptions</code> and overriding the default properties. To use a <code>BCOVWideSessionProviderOptions</code> options instance, you need to create the <code>BCOVWideSessionProvider</code> using <code>[BCOVSDKManager createWidevineSessionProviderWithOptions:]</code>.</p>
 
+<pre><code>
     BCOVWidevineSessionProviderOptions *options = [[BCOVWidevineSessionProviderOptions alloc] init];
     options.widevineSettings = @{ WVPlayerDrivenAdaptationKey: @0 };
     id&lt;BCOVPlaybackSessionProvider&gt; sessionProvider = [playbackManager createWidevineSessionProviderWithOptions:options];
@@ -185,7 +189,7 @@ You can customize default plugin behavior by creating an instance of `BCOVWidevi
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2014 Brightcove. All rights reserved. (Last updated: 2014-10-07)</span><br />
+						<p><span class="copyright">&copy; 2014 Brightcove. All rights reserved. (Last updated: 2014-11-13)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2 (build 963)</a>.</span></p>
 						

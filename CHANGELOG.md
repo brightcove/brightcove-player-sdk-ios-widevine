@@ -1,3 +1,10 @@
+# 1.0.10
+### Breaking Changes
+* This is the last version of Widevine to support iOS 6. Google has recently updated Widevine and dropped support for iOS 6.
+* This release has been built with Xcode 6. In Xcode 6, Apple removed armv7s from the list of standard architectures. This release no longer includes an armv7s architecture slice.
+
+### Additions and Improvements
+* Internal improvements.
 
 # 1.0.9
 

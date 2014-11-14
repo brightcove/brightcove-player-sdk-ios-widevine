@@ -1,4 +1,9 @@
-# Widevine Plugin for Brightcove Player SDK for iOS, version 1.0.9.217
+# Widevine Plugin for Brightcove Player SDK for iOS, version 1.0.10.234
+
+Requirements
+============
+
+This plugin will run on iOS 6.1+.
 
 Installation
 ============
@@ -43,7 +48,7 @@ To add the Widevine Plugin for Brightcove Player SDK to your project manually:
 
 Quick Start
 ===========
-```objc
+```
 
 	    NSString *token;      // (Brightcove Media API token with URL access)
 	    NSString *playlistID; // (ID of the playlist you wish to use)
@@ -79,7 +84,7 @@ Customizing Plugin Behavior
 
 You can customize default plugin behavior by creating an instance of `BCOVWidevineSessionProviderOptions` and overriding the default properties. To use a `BCOVWideSessionProviderOptions` options instance, you need to create the `BCOVWideSessionProvider` using `-[BCOVSDKManager createWidevineSessionProviderWithOptions:]`.
 
-```objc
+```
 
     BCOVWidevineSessionProviderOptions *options = [[BCOVWidevineSessionProviderOptions alloc] init];
     options.widevineSettings = @{ WVPlayerDrivenAdaptationKey: @0 };
