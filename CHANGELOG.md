@@ -1,3 +1,7 @@
+# 1.2.1
+### Additions and Improvements
+* Introduces support for `- [BCOVPlaybackController resumeVideoAtTime:withAutoPlay:` that was added in BCOVPlayerSDK v4.3.4.
+
 # 1.2.0
 
 ### Breaking Changes
