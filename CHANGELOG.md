@@ -1,3 +1,7 @@
+# 1.2.2
+### Additions and Improvements
+* Internal improvements to support Brightcove Player SDK for iOS v.4.4.0.
+
 # 1.2.1
 ### Additions and Improvements
 * Introduces support for `- [BCOVPlaybackController resumeVideoAtTime:withAutoPlay:` that was added in BCOVPlayerSDK v4.3.4.
