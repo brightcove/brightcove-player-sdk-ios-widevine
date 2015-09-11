@@ -1,3 +1,9 @@
+# 1.2.3
+
+### Additions and Improvements
+
+* Added `[BCOVWidevineSourceSelectionPolicy sourceSelectionWidevineWithScheme:]` and `[BCOVWidevineSourceSelectionPolicy sourceSelectionWidevine]` methods that provide source selection policies to help choose specific Widevine sources from a BCOVVideo object. See the README.md for more information.
+
 # 1.2.2
 ### Additions and Improvements
 * Internal improvements to support Brightcove Player SDK for iOS v.4.4.0.

@@ -44,7 +44,7 @@
 					<div class="section section-overview index-overview">
 						
 						
-						<h1>Widevine Plugin for Brightcove Player SDK for iOS, version 1.2.2.285</h1>
+						<h1>Widevine Plugin for Brightcove Player SDK for iOS, version 1.2.3.291</h1>
 
 <h1>Requirements</h1>
 
@@ -130,17 +130,34 @@
     id&lt;BCOVPlaybackController&gt; playbackController = [playbackManager createPlaybackControllerWithSessionProvider:sessionProvider viewStrategy:nil];
 </code></pre>
 
-<h1>Widevine Quirks</h1>
+<h2>Source Selection (WVM, HTTP/HTTPs)</h2>
 
-<h3>Multiple Widevine Videos/Players</h3>
+<p>The Brightcove Player SDK for iOS provides clients the ability to attach multiple url and delivery types (<code>BCOVSource</code>) to a single video (<code>BCOVVideo</code>). For example, if your videos are being retrieved by the catalog or playback service, there may be a mix of WVM, HLS, or MP4 renditions for a single video, along with HTTP and HTTPs versions.  Which one of these sources that get selected is determined by a source selection block. The default source selection policy used by the Widevine plugin selects the first Widevine <code>BCOVSource</code> on each <code>BCOVVideo</code>, regardless of scheme.</p>
 
-<p>The Widevine library can only load a single video into memory at a time. Therefore, when using the BCOVWidevine plugin, there can be only one <code>BCOVPlaybackController</code> using the plugin at a given time. The default behavior of preloading of the next video in a playlist is also disabled for this reason.</p>
+<p>Source selection can be overridden by creating a <code>BCOVWidevineSessionProviderOptions</code> and using it to create a <code>BCOVWidevineSessionProvider</code>. For example:</p>
 
-<h3>Background/Foreground behavior</h3>
+<pre><code>BCOVPlayerSDKManager *sdkManager = [BCOVPlayerSDKManager sharedManager];
 
-<p>Widevine will automatically stop and unload WVM videos when the client app is exited. This occurs on <code>UIApplicationDidEnterBackgroundNotification</code>. When re-entering the app (on <code>UIApplicationWillEnterForegroundNotification</code>, assuming iOS has not purged the app from memory), the BCOVWidevine plugin will replace the current BCOVPlaybackSession&rsquo;s <code>player.currentItem</code> with a new AVPlayerItem, and will automatically seek to the position recorded when the app entered the background. This takes additional time, as the video must be reloaded &ldquo;from scratch&rdquo;. When the new AVPlayerItem is ready, the plugin will send a <code>kBCOVWidevineLifeycleEventSessionResumed</code> lifecycle event to indicate that the AVPlayer can receive message sends. Failing to wait for this event before interacting with the player will result in undefined behavior.</p>
+BCOVWidevineSessionProviderOptions *options = [[BCOVWidevineSessionProviderOptions alloc] init];    
+options.sourceSelectionPolicy = &lt;policy&gt;
 
-<p>In addition to re-initializing the player, the plugin will also resume playback if the content had been playing when the app exited. This can be disabled with a custom <code>BCOVWideSessionProviderOptions</code>.</p>
+id&lt;BCOVWidevineSessionProvider&gt; provider = [sdkManager createWidevineSessionProviderWithOptions:options];
+id&lt;BCOVPlaybackController&gt; playbackController [sdkManager createPlaybackControllerWithSessionProvider:provider viewStrategy:nil];
+</code></pre>
+
+<p>If this default selection policy does not work for you, there are a few alternatives to selecting a source:</p>
+
+<ul>
+<li><p>If retrieving videos from Video Cloud via the catalog service or playback service, before calling <code>[BCOVPlaybackController setVideos:]</code>, use the update method on the <code>BCOVVideo</code> to only contain the source you want (see the &ldquo;Values&rdquo; section for more info).</p></li>
+<li><p>If you prefer HTTPS sources, the Widevine plugin provides additional options for selecting Widevine sources with a particular scheme. <code>[BCOVWidevineSourceSelectionPolicy sourceSelectionWidevineWithScheme:kBCOVSourceURLSchemeHTTPS]</code> provides a source selection policy that prefers Widevine sources using HTTPS. This will not convert non-HTTP urls to HTTPs urls. If you choose to select HTTPs, ensure that your CDN is configured for HTTPs. If the CDN is configured for HTTPs, use <code>BCOVPlaybackService</code> instead of <code>BCOVCatalogService</code> to retrieve video/playlist metadata.</p></li>
+<li><p>Similar to updating the video object, you may also implement your own source selection block.</p>
+
+<pre><code>  options.sourceSelectionPolicy = ^ BCOVSource *(BCOVVideo *video) {
+
+     &lt;Check video.sources for source&gt;
+</code></pre></li>
+</ul>
+
 						
 						
 					</div>
@@ -157,6 +174,8 @@
 								<li><a href="Classes/BCOVWidevineSessionProvider.html">BCOVWidevineSessionProvider</a></li>
 								
 								<li><a href="Classes/BCOVWidevineSessionProviderOptions.html">BCOVWidevineSessionProviderOptions</a></li>
+								
+								<li><a href="Classes/BCOVWidevineSourceSelectionPolicy.html">BCOVWidevineSourceSelectionPolicy</a></li>
 								
 							</ul>
 						</div>
@@ -187,7 +206,7 @@
 					<footer>
 						<div class="footer-copyright">
 							
-							<p class="copyright">Copyright &copy; 2015 Brightcove. All rights reserved. Updated: 2015-08-19</p>
+							<p class="copyright">Copyright &copy; 2015 Brightcove. All rights reserved. Updated: 2015-09-10</p>
 							
 							
 							<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>

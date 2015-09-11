@@ -25,6 +25,40 @@
 
 
 /**
+ * The Widevine source selection policy determines
+ * which source to select from a BCOVVideo object.
+ */
+@interface BCOVWidevineSourceSelectionPolicy : NSObject <NSCopying>
+
+/**
+ * Select the first Widevine video with the specified scheme.
+ * If no Widevine source with that scheme is found, return the first Widevine
+ * source of any scheme. If no Widevine source is found, fallback to the HLS
+ * scheme-based source selection policy: select the first video in HLS with the
+ * specified scheme.
+ * If no such source is found, the first HLS source with any scheme is returned.
+ * If no HLS sources are present, the first MP4 is returned.
+ * If none of the above is found, the first source of any kind is returned.
+ * @param scheme The preferred scheme (kBCOVSourceURLSchemeHTTP or
+ * kBCOVSourceURLSchemeHTTPS) of the source URL.
+ * @return A source selection policy that prefers HLS with the specified scheme.
+ */
++ (BCOVBasicSessionProviderSourceSelectionPolicy)sourceSelectionWidevineWithScheme:(NSString *)scheme;
+
+/**
+ * Select the first Widevine video, preferring HTTPS over HTTP.
+ * If no Widevine source found, fallback to the basic source selection policy:
+ * select the first video in HLS, regardless of scheme.
+ * If no HLS source is found, select the first source with a deliveryType of
+ * "MP4". If neither is found, the first source of any kind is returned.
+ * This is the default source selection policy.
+ */
++ (BCOVBasicSessionProviderSourceSelectionPolicy)sourceSelectionWidevine;
+
+@end
+
+
+/**
  * Optional configuration for Widevine session providers.
  */
 @interface BCOVWidevineSessionProviderOptions : NSObject

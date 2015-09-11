@@ -1,4 +1,4 @@
-# Widevine Plugin for Brightcove Player SDK for iOS, version 1.2.2.285
+# Widevine Plugin for Brightcove Player SDK for iOS, version 1.2.3.291
 
 Requirements
 ============
@@ -78,6 +78,37 @@ You can customize default plugin behavior by creating an instance of `BCOVWidevi
 
     id<BCOVPlaybackController> playbackController = [playbackManager createPlaybackControllerWithSessionProvider:sessionProvider viewStrategy:nil];
 ```
+
+Source Selection (WVM, HTTP/HTTPs)
+---------------------------------------
+The Brightcove Player SDK for iOS provides clients the ability to attach multiple url and delivery types (`BCOVSource`) to a single video (`BCOVVideo`). For example, if your videos are being retrieved by the catalog or playback service, there may be a mix of WVM, HLS, or MP4 renditions for a single video, along with HTTP and HTTPs versions.  Which one of these sources that get selected is determined by a source selection block. The default source selection policy used by the Widevine plugin selects the first Widevine `BCOVSource` on each `BCOVVideo`, regardless of scheme. 
+
+Source selection can be overridden by creating a `BCOVWidevineSessionProviderOptions` and using it to create a `BCOVWidevineSessionProvider`. For example:
+
+    BCOVPlayerSDKManager *sdkManager = [BCOVPlayerSDKManager sharedManager];
+    
+    BCOVWidevineSessionProviderOptions *options = [[BCOVWidevineSessionProviderOptions alloc] init];    
+    options.sourceSelectionPolicy = <policy>
+    
+    id<BCOVWidevineSessionProvider> provider = [sdkManager createWidevineSessionProviderWithOptions:options];
+    id<BCOVPlaybackController> playbackController [sdkManager createPlaybackControllerWithSessionProvider:provider viewStrategy:nil];
+
+
+If this default selection policy does not work for you, there are a few alternatives to selecting a source:
+
+* If retrieving videos from Video Cloud via the catalog service or playback service, before calling `-[BCOVPlaybackController setVideos:]`, use the update method on the `BCOVVideo` to only contain the source you want (see the "Values" section for more info).
+
+* If you prefer HTTPS sources, the Widevine plugin provides additional options for selecting Widevine sources with a particular scheme. `[BCOVWidevineSourceSelectionPolicy sourceSelectionWidevineWithScheme:kBCOVSourceURLSchemeHTTPS]` provides a source selection policy that prefers Widevine sources using HTTPS. This will not convert non-HTTP urls to HTTPs urls. If you choose to select HTTPs, ensure that your CDN is configured for HTTPs. If the CDN is configured for HTTPs, use `BCOVPlaybackService` instead of `BCOVCatalogService` to retrieve video/playlist metadata.
+
+* Similar to updating the video object, you may also implement your own source selection block.
+        
+        options.sourceSelectionPolicy = ^ BCOVSource *(BCOVVideo *video) {
+        
+           <Check video.sources for source>
+           <return source>
+
+        };
+
 
 Widevine Quirks
 ===========
