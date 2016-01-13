@@ -1,0 +1,6 @@
+framework module BrightcoveWidevine {
+  umbrella header "BrightcoveWidevine.h"
+
+  export *
+  module * { export * }
+}

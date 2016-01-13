@@ -1,3 +1,13 @@
+# 2.0.0
+
+### Breaking Changes
+
+* The static library distributable has been removed. If installed manually (not CocoaPods), you will need to remove the libBCOVWidevine.a library from the Library Search Paths, and its headers from the Header Search Paths. Please see README.md for new install options (including a static library framework).
+
+### Additions and Improvements
+
+* The Widevine Plugin for Brightcove Player SDK is now distributed as a static framework.
+
 # 1.2.3
 
 ### Additions and Improvements

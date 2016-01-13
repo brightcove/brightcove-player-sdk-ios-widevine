@@ -1,31 +1,61 @@
-# Widevine Plugin for Brightcove Player SDK for iOS, version 1.2.3.291
+# Widevine Plugin for Brightcove Player SDK for iOS, version 2.0.0.310
 
-Requirements
-============
 
-This plugin will run on iOS 7.0+. Widevine will not run on the simulator.
+Supported Platforms
+===================
+
+iOS 7.0 and above. **Widevine will not run on the iOS Simulator.**
 
 Installation
 ============
-You can use [Cocoapods][cocoapods] to add the Widevine Plugin for Brightcove Player SDK to your project.  You can find the latest `Brightcove-Player-SDK-Widevine` podspec [here][podspecs].  To use this spec, using Cocoapods 0.34.1+, add the following to the top of Podfile: `source 'https://github.com/brightcove/BCOVSpecs.git'`.
+The Widevine Plugin for Brightcove Player SDK provides a static library framework for installation.
+
+CocoaPods
+--------------
+You can use [Cocoapods][cocoapods] to add the Widevine Plugin for Brightcove Player SDK to your project. You can find the latest `Brightcove-Player-SDK-Widevine` podspec [here][podspecs]. To use this spec, add the following to the top of Podfile:`source 'https://github.com/brightcove/BCOVSpecs.git'` or run `pod repo add BCOVSpecs https://github.com/brightcove/BCOVSpecs.git`. CocoaPods 0.39 or newer is required.
+
+The Widevine SDK **is not** included in this pod. You **must** manually add the Widevine library to your project even when using Cocoapods. The pod will however add all the libraries required by Widevine library such as `libc++`, `libxml2`, `libresolv`, `libSystem`, and `libz`. **Please contact Brightcove Support to get access to the Widevine library .**
+
+To manually install the Widevine library:  
+
+1. Request the Widevine library from Brightcove support.
+2. Add the contents of the package to your project.
+3. On the "Build Phases" tab of your application target, add the following to the "Link
+    Binary With Libraries" phase:
+    * `libWViPhoneAPI.a`
+4. On the "Build Settings" tab of your application target:
+    * Ensure that Widevine headers are in your application's "Header Search Path".
+    * Ensure that `-ObjC` has been added to the "Other Linker Flags" build setting.
+
+Static Framework example:  
+
+    source 'https://github.com/CocoaPods/Specs.git'
+    source 'https://github.com/brightcove/BCOVSpecs.git'
+
+    pod 'Brightcove-Player-SDK-Widevine'
+
+Manual
+--------------
 
 To add the Widevine Plugin for Brightcove Player SDK to your project manually:
 
 1. Install the latest version of the [Brightcove Player SDK][bcovsdk].
-1. Download the latest zip'ed release of the plugin from our [release page][release].
-1. Add the contents of Library and Headers to the project.
-1. On the "Build Phases" tab of your application target, add the following to the "Link
+2. Download the latest zip'ed release of the plugin from our [release page][release].
+3. Request Widevine library from Brightcove support and add it your project.
+4. Add the 'BrightcoveWidevine.framework' to your project.
+5. On the "Build Settings" tab of your application target, ensure that the "Framework Search Paths" include the path to the framework. This should have been done automatically unless the framework is stored under a different root directory than your project.
+6. On the "Build Phases" tab of your application target, add the following to the "Link
     Binary With Libraries" phase:
-    * `libBCOVWidevine.a`
+    * `BrightcoveWidevine.framework`
     * `libWViPhoneAPI.a`
     * `libc++`
     * `libxml2`
     * `libresolv`
     * `libSystem`
     * `libz`
-1. On the "Build Settings" tab of your application target:
-    * Ensure that BCOVWidevine headers are in your application's "Header Search Path".
+7. On the "Build Settings" tab of your application target:
     * Ensure that `-ObjC` has been added to the "Other Linker Flags" build setting.
+    * Ensure that Widevine headers are in your application's "Header Search Path".
 
 [bcovsdk]: https://github.com/brightcove/brightcove-player-sdk-ios
 [cocoapods]: http://cocoapods.org
