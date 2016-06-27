@@ -11,6 +11,8 @@
 #import <BrightcovePlayerSDK/BCOVBasicSessionProvider.h>
 
 
+@protocol BCOVPlaybackSessionCommonPropertiesProtocol;
+
 /**
  * Session provider implementation that delivers playback sessions with support
  * for Widevine.
@@ -20,6 +22,8 @@
  * factory method (which is added as a category method).
  */
 @interface BCOVWidevineSessionProvider : NSObject <BCOVPlaybackSessionProvider>
+
+@property (nonatomic, weak) id<BCOVPlaybackSessionCommonPropertiesProtocol> sessionCommonProperties;
 
 @end
 

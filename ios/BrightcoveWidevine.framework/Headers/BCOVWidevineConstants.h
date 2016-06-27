@@ -58,25 +58,25 @@ extern NSString * const kBCOVWidevineWrapperWViOsApiStatus;
 /**
  * An error has occured during creation of the session.
  */
-const NSInteger kBCOVWidevineSessionErrorCodeSessionCreationFailed;
+extern const NSInteger kBCOVWidevineSessionErrorCodeSessionCreationFailed;
 
 /**
  * An error has occured during the initialization of Widevine.
  */
-const NSInteger kBCOVWidevineWrapperErrorCodeInitializationFailed;
+extern const NSInteger kBCOVWidevineWrapperErrorCodeInitializationFailed;
 
 /**
  * An error has occured when attempting to play a Widevine asset.
  */
-const NSInteger kBCOVWidevineWrapperErrorCodePlayFailed;
+extern const NSInteger kBCOVWidevineWrapperErrorCodePlayFailed;
 
 /**
  * An error has occured when attempting unload a Widevine asset from the Widevine
  * library.
  */
-const NSInteger kBCOVWidevineWrapperErrorCodeStopFailed;
+extern const NSInteger kBCOVWidevineWrapperErrorCodeStopFailed;
 
 /**
  * An erro has occured when attempting to terminate Widevine.
  */
-const NSInteger kBCOVWidevineWrapperErrorCodeTerminateFailed;
+extern const NSInteger kBCOVWidevineWrapperErrorCodeTerminateFailed;

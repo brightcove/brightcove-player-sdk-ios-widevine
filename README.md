@@ -1,4 +1,4 @@
-# Widevine Plugin for Brightcove Player SDK for iOS, version 2.0.0.310
+# Widevine Plugin for Brightcove Player SDK for iOS, version 2.1.0.334
 
 
 Supported Platforms

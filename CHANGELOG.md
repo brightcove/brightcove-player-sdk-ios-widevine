@@ -1,3 +1,8 @@
+# 2.1.0
+### Breaking Changes
+
+* Version 2.1.0 of the Widevine plugin requires Brightcove Player SDK for iOS version 5.1.0 or higher.
+
 # 2.0.0
 
 ### Breaking Changes
