@@ -23,8 +23,6 @@
  */
 @interface BCOVWidevineSessionProvider : NSObject <BCOVPlaybackSessionProvider>
 
-@property (nonatomic, weak) id<BCOVPlaybackSessionCommonPropertiesProtocol> sessionCommonProperties;
-
 @end
 
 

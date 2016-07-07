@@ -18,7 +18,7 @@
 		</data>
 		<key>Headers/BCOVWidevineSessionProvider.h</key>
 		<data>
-		IRujk2irdbsNZKdqCT3LqgfARKo=
+		Xby78k7Q00uKx3ko6gLgzHBB+fc=
 		</data>
 		<key>Headers/BrightcoveWidevine.h</key>
 		<data>
@@ -26,19 +26,11 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		OU/1cj2qqEApNQ+FSxAwW9cdt5Y=
+		3hzR5C5sEXKLj83L3F385/YdpmM=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
 		OjOsX2noagEChJSUb30eMHz5jvc=
-		</data>
-		<key>PrivateHeaders/BCOVWidevineSession.h</key>
-		<data>
-		Vg8H0aMRko2g34lqyvHquivXUrc=
-		</data>
-		<key>PrivateHeaders/BCOVWidevineWrapper.h</key>
-		<data>
-		k1jxA4LaWbqOeZkdqCSVuq90NKw=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -80,11 +72,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			IRujk2irdbsNZKdqCT3LqgfARKo=
+			Xby78k7Q00uKx3ko6gLgzHBB+fc=
 			</data>
 			<key>hash2</key>
 			<data>
-			J/z5JU7T/MOXv/KyikeYgUCus6CsWEJyGF7Y3gxclP4=
+			0+YShZyLKHUBPbTSJc4m1wl7HpAgqTEa/A0Z0iHSBTI=
 			</data>
 		</dict>
 		<key>Headers/BrightcoveWidevine.h</key>
@@ -107,28 +99,6 @@
 			<key>hash2</key>
 			<data>
 			7y6nbzjVRnhsOAFeYgQ0/9RsJPtBhaSoVaZvHLfd2nM=
-			</data>
-		</dict>
-		<key>PrivateHeaders/BCOVWidevineSession.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			Vg8H0aMRko2g34lqyvHquivXUrc=
-			</data>
-			<key>hash2</key>
-			<data>
-			HxeuyKaACV2L6JzFXLfQQcm8veFy2s2td5iW5MKtVZ8=
-			</data>
-		</dict>
-		<key>PrivateHeaders/BCOVWidevineWrapper.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			k1jxA4LaWbqOeZkdqCSVuq90NKw=
-			</data>
-			<key>hash2</key>
-			<data>
-			nzxUHGGVYFM2lFaYtaeOVlrkCco+Sv8o3UXqhRPFQPM=
 			</data>
 		</dict>
 	</dict>

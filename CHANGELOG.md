@@ -1,3 +1,10 @@
+# 2.1.1
+
+### Additions and Improvements
+
+* A private, internal property had been exposed in a public header. The property declaration has been fixed. There are no functional changes in this release.
+* All 2.1.x versions of the Widevine plugin require Brightcove Player SDK for iOS version 5.1.0 or higher.
+
 # 2.1.0
 ### Breaking Changes
 
