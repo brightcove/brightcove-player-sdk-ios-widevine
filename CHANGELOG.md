@@ -1,3 +1,9 @@
+# 2.1.4
+
+### Additions and Improvements
+
+* Added a deprecation notice to the top of the README.md file.
+
 # 2.1.3
 
 ### Additions and Improvements
