@@ -8,7 +8,7 @@ iOS 8.0 and 9.0. **Widevine will not run on the iOS Simulator.**
 
 Important - Please Note
 =======================
-The Widevine Plugin for Brightcove Player SDK for iOS is **deprecated**.
+The Widevine Plugin for Brightcove Player SDK for iOS is **no longer supported**.
 
 Installation
 ============
@@ -18,7 +18,7 @@ CocoaPods
 --------------
 You can use [Cocoapods][cocoapods] to add the Widevine Plugin for Brightcove Player SDK to your project. You can find the latest `Brightcove-Player-SDK-Widevine` podspec [here][podspecs]. To use this spec, add the following to the top of Podfile:`source 'https://github.com/brightcove/BCOVSpecs.git'` or run `pod repo add BCOVSpecs https://github.com/brightcove/BCOVSpecs.git`. CocoaPods 0.39 or newer is required.
 
-The Widevine SDK **is not** included in this pod. You **must** manually add the Widevine library to your project even when using Cocoapods. The pod will however add all the libraries required by Widevine library such as `libc++`, `libxml2`, `libresolv`, `libSystem`, and `libz`. **Please contact Brightcove Support to get access to the Widevine library .**
+The Widevine SDK **is not** included in this pod. You **must** manually add the Widevine library to your project even when using Cocoapods. The pod will however add all the libraries required by Widevine library such as `libc++`, `libxml2`, `libresolv`, `libSystem`, and `libz`. **Please contact Brightcove Support to get access to the Widevine library.**
 
 To manually install the Widevine library:  
 
